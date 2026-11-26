@@ -510,6 +510,41 @@
     font-family:var(--display);font-size:clamp(40px,9vw,110px);line-height:.95;
     letter-spacing:.04em;color:var(--brass);
   }
+
+  /* ---------------- GOLDA SECRET ---------------- */
+  #golda{
+    position:fixed;inset:0;z-index:120;background:#000;cursor:zoom-out;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;transition:opacity .3s, visibility .3s;
+  }
+  #golda.open{opacity:1;visibility:visible}
+  #golda img{width:100%;height:100%;object-fit:contain;transform:scale(1.02)}
+  #golda.open img{animation:gmZoom 12s ease-out forwards}
+  @keyframes gmZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+  #golda::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 30%);
+  }
+  #golda .gm-top{
+    position:absolute;top:0;left:0;right:0;padding:24px 28px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-family:var(--accent);font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(240,194,123,.85);
+    background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);
+    pointer-events:none;z-index:2;
+  }
+  #golda .gm-cap{
+    position:absolute;left:0;right:0;bottom:0;padding:60px 24px 28px;text-align:center;
+    font-family:var(--display);font-size:clamp(24px,5vw,56px);letter-spacing:.08em;
+    color:#f6ecda;text-shadow:0 2px 20px #000;
+    pointer-events:none;z-index:2;
+  }
+  #golda .gm-cap small{display:block;font-family:var(--accent);font-size:11px;letter-spacing:.3em;color:var(--copper);margin-top:10px}
+  @media (max-width:560px){
+    #golda .gm-top{padding:16px;font-size:10px;letter-spacing:.18em}
+    #golda .gm-cap{padding:40px 16px 20px}
+  }
+
   .flash{position:fixed;inset:0;background:#fff;z-index:121;pointer-events:none;animation:flash .5s ease-out forwards}
   @keyframes flash{from{opacity:1}to{opacity:0}}
 
@@ -561,7 +596,7 @@
       </div>
     </a>
     <div class="secrets" title="Секретки">
-      <span>секретки</span> <b><span id="secretCount">0</span>/6</b>
+      <span>секретки</span> <b><span id="secretCount">0</span>/7</b>
     </div>
   </div>
 </nav>
@@ -845,7 +880,7 @@
       <div class="note">Сайт собран на чистом энтузиазме, кофе и уважении к рекрутам. Все совпадения с ПЛ монстром случайны. Ну почти.</div>
     </div>
     <div>
-      <div class="note" style="text-align:right">секреток найдено: <b style="color:var(--brass)"><span class="secretCount2">0</span>/6</b></div>
+      <div class="note" style="text-align:right">секреток найдено: <b style="color:var(--brass)"><span class="secretCount2">0</span>/7</b></div>
       <button class="ghost-btn" id="dontPress">не нажимать</button>
     </div>
   </div>
@@ -873,6 +908,12 @@
   <div class="bm-cap">ЭТО БРЮМАСТЕР. НЕ ПУГАЙСЯ.<small>нажми, чтобы закрыть</small></div>
 </div>
 
+<div id="golda">
+  <img id="goldaImg" src="golda.jpg" alt="Голда">
+  <div class="gm-top"><span>секретка · голда</span><span>клик / esc — закрыть</span></div>
+  <div class="gm-cap">ГОЛДА<small>1MODEAD · нажми, чтобы закрыть</small></div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -883,7 +924,7 @@
   const rnd = (min, max) => Math.random() * (max - min) + min;
 
   /* ============ SECRETS / TOASTS ============ */
-  const SECRET_TOTAL = 6;
+  const SECRET_TOTAL = 7;
   const secrets = new Set();
 
   function toast(title, text){
@@ -1270,14 +1311,46 @@
     }
   });
   brumaster.addEventListener("click", hideBrumaster);
+
+  /* ============ SECRET: TYPE "голда" ============ */
+  const golda = $("#golda");
+  const goldaImg = $("#goldaImg");
+  function showGolda(){
+    if (golda.classList.contains("open")) return;
+    golda.classList.add("open");
+    document.body.style.overflow = "hidden";
+    const flash = document.createElement("div");
+    flash.className = "flash";
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 560);
+    confetti(30);
+    unlock("golda", "ГОЛДА", "Ты написал «голда». Картинка с обложки трека вылезла на весь экран.");
+  }
+  function hideGolda(){
+    golda.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  goldaImg.addEventListener("error", () => {
+    goldaImg.style.display = "none";
+  });
+  golda.addEventListener("click", hideGolda);
+
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") hideBrumaster();
+    if (e.key === "Escape"){
+      hideBrumaster();
+      hideGolda();
+    }
   });
 
   let typed = "";
   document.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
     typed = (typed + e.key.toLowerCase()).slice(-16);
+    if (typed.includes("голда")){
+      typed = "";
+      showGolda();
+      return;
+    }
     if (typed.includes("брюмастер")){
       typed = "";
       showBrumaster();
@@ -1359,7 +1432,7 @@
   /* ============ CONSOLE HINT ============ */
   try{
     console.log("%c⚙️ PL.MONSTER", "color:#f0c27b;font-size:22px;font-weight:bold");
-    console.log("%cТут спрятано 6 секреток. Начни с конца страницы. И следи за клавиатурой.", "color:#a2947f");
+    console.log("%cТут спрятано 7 секреток. Начни с конца страницы. И следи за клавиатурой.", "color:#a2947f");
   }catch(e){}
 
   updateSecretCount();
