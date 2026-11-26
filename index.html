@@ -511,21 +511,21 @@
     letter-spacing:.04em;color:var(--brass);
   }
 
-  /* ---------------- IMAGE SECRETS: GOLDA / KOCH ---------------- */
-  #golda, #koch{
+  /* ---------------- IMAGE SECRETS: GOLDA / KOCH / KOCH+GOLDA ---------------- */
+  #golda, #koch, #kochgolda{
     position:fixed;inset:0;z-index:120;background:#000;cursor:zoom-out;
     display:flex;align-items:center;justify-content:center;
     opacity:0;visibility:hidden;transition:opacity .3s, visibility .3s;
   }
-  #golda.open, #koch.open{opacity:1;visibility:visible}
-  #golda img, #koch img{width:100%;height:100%;object-fit:contain;transform:scale(1.02)}
-  #golda.open img, #koch.open img{animation:secretZoom 12s ease-out forwards}
+  #golda.open, #koch.open, #kochgolda.open{opacity:1;visibility:visible}
+  #golda img, #koch img, #kochgolda img{width:100%;height:100%;object-fit:contain;transform:scale(1.02)}
+  #golda.open img, #koch.open img, #kochgolda.open img{animation:secretZoom 12s ease-out forwards}
   @keyframes secretZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
-  #golda::after, #koch::after{
+  #golda::after, #koch::after, #kochgolda::after{
     content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
     background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 30%);
   }
-  #golda .gm-top, #koch .gm-top{
+  #golda .gm-top, #koch .gm-top, #kochgolda .gm-top{
     position:absolute;top:0;left:0;right:0;padding:24px 28px;
     display:flex;justify-content:space-between;align-items:center;gap:16px;
     font-family:var(--accent);font-size:12px;letter-spacing:.3em;text-transform:uppercase;
@@ -533,16 +533,16 @@
     background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);
     pointer-events:none;z-index:2;
   }
-  #golda .gm-cap, #koch .gm-cap{
+  #golda .gm-cap, #koch .gm-cap, #kochgolda .gm-cap{
     position:absolute;left:0;right:0;bottom:0;padding:60px 24px 28px;text-align:center;
     font-family:var(--display);font-size:clamp(24px,5vw,56px);letter-spacing:.08em;
     color:#f6ecda;text-shadow:0 2px 20px #000;
     pointer-events:none;z-index:2;
   }
-  #golda .gm-cap small, #koch .gm-cap small{display:block;font-family:var(--accent);font-size:11px;letter-spacing:.3em;color:var(--copper);margin-top:10px}
+  #golda .gm-cap small, #koch .gm-cap small, #kochgolda .gm-cap small{display:block;font-family:var(--accent);font-size:11px;letter-spacing:.3em;color:var(--copper);margin-top:10px}
   @media (max-width:560px){
-    #golda .gm-top, #koch .gm-top{padding:16px;font-size:10px;letter-spacing:.18em}
-    #golda .gm-cap, #koch .gm-cap{padding:40px 16px 20px}
+    #golda .gm-top, #koch .gm-top, #kochgolda .gm-top{padding:16px;font-size:10px;letter-spacing:.18em}
+    #golda .gm-cap, #koch .gm-cap, #kochgolda .gm-cap{padding:40px 16px 20px}
   }
 
   .flash{position:fixed;inset:0;background:#fff;z-index:121;pointer-events:none;animation:flash .5s ease-out forwards}
@@ -596,7 +596,7 @@
       </div>
     </a>
     <div class="secrets" title="Секретки">
-      <span>секретки</span> <b><span id="secretCount">0</span>/8</b>
+      <span>секретки</span> <b><span id="secretCount">0</span>/9</b>
     </div>
   </div>
 </nav>
@@ -880,7 +880,7 @@
       <div class="note">Сайт собран на чистом энтузиазме, кофе и уважении к рекрутам. Все совпадения с ПЛ монстром случайны. Ну почти.</div>
     </div>
     <div>
-      <div class="note" style="text-align:right">секреток найдено: <b style="color:var(--brass)"><span class="secretCount2">0</span>/8</b></div>
+      <div class="note" style="text-align:right">секреток найдено: <b style="color:var(--brass)"><span class="secretCount2">0</span>/9</b></div>
       <button class="ghost-btn" id="dontPress">не нажимать</button>
     </div>
   </div>
@@ -920,6 +920,12 @@
   <div class="gm-cap">КОЧ БРАТАН<small>Bankodyu feat maksimkaBeATs · нажми, чтобы закрыть</small></div>
 </div>
 
+<div id="kochgolda">
+  <img id="kochgoldaImg" src="koch-golda.jpg" alt="Коч Голда">
+  <div class="gm-top"><span>секретка · коч голда</span><span>клик / esc — закрыть</span></div>
+  <div class="gm-cap">КОЧ ГОЛДА<small>секретная картинка · нажми, чтобы закрыть</small></div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -930,7 +936,7 @@
   const rnd = (min, max) => Math.random() * (max - min) + min;
 
   /* ============ SECRETS / TOASTS ============ */
-  const SECRET_TOTAL = 8;
+  const SECRET_TOTAL = 9;
   const secrets = new Set();
 
   function toast(title, text){
@@ -1364,18 +1370,81 @@
   });
   koch.addEventListener("click", hideKoch);
 
+  /* ============ SECRET: TYPE "коч голда" ============ */
+  const kochgolda = $("#kochgolda");
+  const kochgoldaImg = $("#kochgoldaImg");
+  function showKochGolda(){
+    if (kochgolda.classList.contains("open")) return;
+    kochgolda.classList.add("open");
+    document.body.style.overflow = "hidden";
+    const flash = document.createElement("div");
+    flash.className = "flash";
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 560);
+    confetti(40);
+    unlock("kochgolda", "КОЧ ГОЛДА", "Ты написал «коч голда». А это вот он.");
+  }
+  function hideKochGolda(){
+    kochgolda.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  kochgoldaImg.addEventListener("error", () => {
+    kochgoldaImg.style.display = "none";
+  });
+  kochgolda.addEventListener("click", hideKochGolda);
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape"){
       hideBrumaster();
       hideGolda();
       hideKoch();
+      hideKochGolda();
     }
   });
+
+  const comboPhrase = "коч голда";
+  let comboBuf = "";
+  let comboTimer = null;
+  function armKochTimer(){
+    clearTimeout(comboTimer);
+    comboTimer = setTimeout(() => {
+      if (comboBuf === "коч"){
+        comboBuf = "";
+        typed = "";
+        showKoch();
+      }
+    }, 650);
+  }
 
   let typed = "";
   document.addEventListener("keydown", (e) => {
     if (e.key.length !== 1) return;
-    typed = (typed + e.key.toLowerCase()).slice(-16);
+    const ch = e.key.toLowerCase();
+    typed = (typed + ch).slice(-16);
+
+    if (comboPhrase.startsWith(comboBuf + ch)){
+      comboBuf += ch;
+      clearTimeout(comboTimer);
+      if (comboBuf === comboPhrase){
+        comboBuf = "";
+        typed = "";
+        showKochGolda();
+        return;
+      }
+      if (comboBuf === "коч") armKochTimer();
+      return;
+    }
+
+    clearTimeout(comboTimer);
+    if (comboBuf === "коч" || comboBuf.indexOf("коч ") === 0){
+      comboBuf = "";
+      typed = "";
+      showKoch();
+      return;
+    }
+    comboBuf = ch === "к" ? "к" : "";
+    if (comboBuf === "к") return;
+
     if (typed.includes("коч")){
       typed = "";
       showKoch();
@@ -1467,7 +1536,7 @@
   /* ============ CONSOLE HINT ============ */
   try{
     console.log("%c⚙️ PL.MONSTER", "color:#f0c27b;font-size:22px;font-weight:bold");
-    console.log("%cТут спрятано 8 секреток. Начни с конца страницы. И следи за клавиатурой.", "color:#a2947f");
+    console.log("%cТут спрятано 9 секреток. Начни с конца страницы. И следи за клавиатурой.", "color:#a2947f");
   }catch(e){}
 
   updateSecretCount();
