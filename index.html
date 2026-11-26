@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>С ДНЁМ РОЖДЕНИЯ, ПЛ МОНСТР ⚙️</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%99%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0908;
+    --bg2:#14110c;
+    --panel:#171309;
+    --copper:#c8863c;
+    --brass:#f0c27b;
+    --rust:#8a3b1e;
+    --acid:#c6ff4a;
+    --ink:#eee6d6;
+    --muted:#a2947f;
+    --line:rgba(240,194,123,.18);
+    --display:"Bebas Neue",Impact,sans-serif;
+    --accent:"Oswald","Arial Narrow",sans-serif;
+    --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 15% -10%, rgba(200,134,60,.16), transparent 60%),
+      radial-gradient(900px 600px at 90% 10%, rgba(138,59,30,.16), transparent 60%),
+      radial-gradient(800px 800px at 50% 110%, rgba(198,255,74,.05), transparent 60%),
+      linear-gradient(180deg,#0a0908 0%,#0c0a08 100%);
+    color:var(--ink);
+    font-family:var(--body);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* grain */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:60;
+    opacity:.055;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection{background:var(--copper);color:#120d07}
+
+  a{color:inherit}
+
+  .wrap{width:min(1140px,92vw);margin-inline:auto}
+
+  /* ---------------- NAV ---------------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px) saturate(140%);
+    background:linear-gradient(180deg,rgba(10,9,8,.85),rgba(10,9,8,.35));
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand .gear{width:34px;height:34px}
+  .brand b{
+    font-family:var(--display);letter-spacing:.14em;font-size:22px;
+    background:linear-gradient(180deg,#fff4dd,var(--brass) 55%,var(--copper));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .brand small{color:var(--muted);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  .secrets{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;background:rgba(240,194,123,.04);
+    font-family:var(--accent);
+  }
+  .secrets b{color:var(--brass)}
+
+  /* ---------------- GEAR ---------------- */
+  .gear{
+    position:relative;flex:0 0 auto;border-radius:50%;
+    background:
+      radial-gradient(circle, transparent 0 26%, var(--copper) 26% 30%, #2a1f13 30% 44%, var(--copper) 44% 58%, transparent 58%),
+      repeating-conic-gradient(from 0deg, var(--copper) 0 9deg, transparent 9deg 20deg);
+    box-shadow:0 0 40px rgba(200,134,60,.25), inset 0 0 24px rgba(0,0,0,.7);
+    animation:spin 18s linear infinite;
+    opacity:.9;
+  }
+  .gear::after{
+    content:"";position:absolute;inset:38%;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #3a2a17, #100c08 70%);
+    box-shadow:inset 0 0 10px rgba(0,0,0,.9);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .gear.rev{animation-direction:reverse}
+  .gear.slow{animation-duration:40s}
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    position:relative;
+    min-height:calc(100svh - 64px);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:80px 0 90px;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  #sparks{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+  .hero .spot{
+    position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(500px 500px at var(--mx,50%) var(--my,40%), rgba(240,194,123,.12), transparent 70%);
+    transition:background .15s;
+  }
+  .hero-gear-a{position:absolute;left:-90px;top:12%;width:280px;height:280px;opacity:.35}
+  .hero-gear-b{position:absolute;right:-120px;bottom:4%;width:360px;height:360px;opacity:.25}
+  .hero-gear-c{position:absolute;right:14%;top:8%;width:110px;height:110px;opacity:.4}
+
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--accent);text-transform:uppercase;letter-spacing:.32em;
+    font-size:12px;color:var(--brass);
+    border:1px solid rgba(240,194,123,.28);
+    padding:8px 16px;border-radius:999px;
+    background:rgba(240,194,123,.05);
+    animation:rise .8s .05s both;
+  }
+  .kicker i{width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 10px var(--acid)}
+
+  h1{
+    font-family:var(--display);
+    font-weight:400;
+    line-height:.88;
+    margin:26px 0 10px;
+    font-size:clamp(56px,11.5vw,150px);
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    color:#f7ecd8;
+    text-shadow:0 6px 0 rgba(0,0,0,.35);
+    animation:rise .9s .12s both;
+  }
+  h1 .name{
+    display:block;
+    background:linear-gradient(180deg,#fff6e4 0%,var(--brass) 42%,var(--copper) 70%,#6e3a14 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 34px rgba(200,134,60,.35));
+    letter-spacing:.06em;
+  }
+  .hero p.lead{
+    max-width:640px;margin:18px auto 0;color:var(--muted);
+    font-size:clamp(15px,1.5vw,18px);line-height:1.7;
+    animation:rise 1s .2s both;
+  }
+  .hero p.lead b{color:var(--ink)}
+  .hero p.lead .bad{color:var(--acid)}
+
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;animation:rise 1s .3s both}
+  .btn{
+    --c:var(--copper);
+    appearance:none;border:1px solid rgba(240,194,123,.35);
+    background:linear-gradient(180deg,rgba(240,194,123,.16),rgba(240,194,123,.05));
+    color:var(--ink);
+    font-family:var(--accent);font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+    padding:16px 28px;border-radius:999px;cursor:pointer;
+    position:relative;overflow:hidden;
+    transition:transform .18s, box-shadow .25s, border-color .25s, background .25s;
+    box-shadow:0 10px 30px -14px rgba(200,134,60,.6);
+  }
+  .btn:hover{transform:translateY(-3px);border-color:var(--brass);background:linear-gradient(180deg,rgba(240,194,123,.3),rgba(240,194,123,.1));box-shadow:0 18px 40px -18px rgba(240,194,123,.7)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn.primary{
+    background:linear-gradient(180deg,var(--brass),var(--copper));
+    color:#1a1208;font-weight:700;border-color:transparent;
+  }
+  .btn.primary:hover{filter:brightness(1.07)}
+  .btn.ghost{background:transparent;color:var(--muted)}
+  .btn.ghost:hover{color:var(--ink)}
+
+  .scroll-hint{
+    position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+    font-family:var(--accent);font-size:10px;letter-spacing:.4em;text-transform:uppercase;
+    color:rgba(162,148,127,.7);display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .scroll-hint span{width:1px;height:38px;background:linear-gradient(var(--copper),transparent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+  /* ---------------- TICKER ---------------- */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:linear-gradient(90deg,rgba(200,134,60,.07),transparent 30%,transparent 70%,rgba(200,134,60,.07));
+    overflow:hidden;white-space:nowrap;user-select:none;
+    padding:14px 0;
+  }
+  .ticker-track{display:inline-flex;gap:0;animation:marquee 38s linear infinite}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  .ticker span{
+    font-family:var(--display);font-size:20px;letter-spacing:.18em;
+    color:rgba(240,194,123,.55);padding:0 22px;display:inline-flex;align-items:center;gap:22px;
+    text-transform:uppercase;
+  }
+  .ticker span::after{content:"⚙";color:rgba(200,134,60,.5);font-size:14px}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ---------------- SECTIONS ---------------- */
+  section{position:relative}
+  .sec{padding:clamp(70px,9vw,120px) 0}
+  .sec-head{margin-bottom:44px;max-width:720px}
+  .eyebrow{
+    font-family:var(--accent);font-size:11px;letter-spacing:.36em;text-transform:uppercase;
+    color:var(--copper);display:flex;align-items:center;gap:12px;margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--copper)}
+  h2{
+    font-family:var(--display);font-weight:400;text-transform:uppercase;
+    font-size:clamp(34px,5vw,58px);line-height:1;margin:0;letter-spacing:.02em;
+    color:#f5ebd9;
+  }
+  h2 em{font-style:normal;color:var(--copper)}
+  .sec-head p{color:var(--muted);margin:16px 0 0;line-height:1.75;font-size:15.5px}
+
+  .panel{
+    border:1px solid var(--line);border-radius:20px;
+    background:linear-gradient(180deg,rgba(240,194,123,.05),rgba(20,17,12,.6));
+    box-shadow:0 30px 60px -40px #000, inset 0 1px 0 rgba(255,255,255,.04);
+    position:relative;overflow:hidden;
+  }
+  .panel::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(600px 200px at 0% 0%,rgba(240,194,123,.09),transparent 60%);
+  }
+
+  /* ---------------- DOSSIER ---------------- */
+  .dossier{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:stretch}
+  .char{
+    padding:34px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;
+  }
+  .char-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .char-id small{font-family:var(--accent);letter-spacing:.3em;color:var(--muted);font-size:10px;text-transform:uppercase}
+  .char-id h3{font-family:var(--display);font-size:clamp(34px,4vw,46px);margin:6px 0 4px;font-weight:400;letter-spacing:.03em}
+  .char-id p{margin:0;color:var(--muted);font-size:13.5px}
+  .char-gear{width:120px;height:120px;animation-duration:24s}
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .stat{
+    border:1px solid rgba(240,194,123,.12);border-radius:14px;padding:14px 16px;
+    background:rgba(10,9,8,.35);
+  }
+  .stat small{display:block;font-family:var(--accent);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .stat b{font-family:var(--accent);font-size:17px;letter-spacing:.02em;color:var(--ink)}
+  .stat b.bad{color:#ff8a5c}
+  .stat b.good{color:var(--acid)}
+
+  .lore{padding:34px;display:flex;flex-direction:column;gap:18px}
+  .lore h4{font-family:var(--display);font-size:28px;margin:0;font-weight:400;letter-spacing:.04em;color:var(--brass)}
+  .lore p{margin:0;color:var(--muted);line-height:1.8;font-size:15px}
+  .lore p b{color:var(--ink)}
+  .lore .quote{
+    margin-top:auto;border-left:2px solid var(--copper);padding:10px 0 10px 16px;
+    font-style:italic;color:rgba(238,230,214,.8);font-size:14.5px;
+  }
+
+  /* ---------------- GENERATOR ---------------- */
+  .gen{padding:clamp(26px,4vw,46px);text-align:center}
+  .gen .screen{
+    min-height:150px;display:flex;align-items:center;justify-content:center;
+    padding:26px;border:1px dashed rgba(240,194,123,.22);border-radius:16px;
+    background:radial-gradient(500px 200px at 50% 0%,rgba(200,134,60,.10),transparent 70%);
+    margin-bottom:26px;
+  }
+  #genText{
+    font-family:var(--display);font-size:clamp(24px,3.4vw,38px);line-height:1.15;
+    letter-spacing:.02em;text-transform:uppercase;max-width:820px;
+    color:#f6ecda;transition:opacity .25s, transform .25s;
+  }
+  #genText.fade{opacity:0;transform:translateY(8px)}
+  .gen-meta{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px;color:var(--muted);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-family:var(--accent)}
+
+  /* ---------------- HOOK GAME ---------------- */
+  .game-grid{display:grid;grid-template-columns:1fr 300px;gap:24px}
+  .arena-wrap{padding:18px}
+  #arena{
+    position:relative;height:360px;border-radius:14px;overflow:hidden;cursor:crosshair;
+    border:1px solid rgba(240,194,123,.16);
+    background:
+      radial-gradient(500px 300px at 30% 20%, rgba(200,134,60,.16), transparent 60%),
+      radial-gradient(600px 400px at 80% 90%, rgba(138,59,30,.22), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(240,194,123,.05) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(240,194,123,.05) 0 1px, transparent 1px 40px),
+      #0d0a07;
+    touch-action:manipulation;
+  }
+  #arena::after{
+    content:"КЛИКНИ, КУДА ХОЧЕШЬ ЗАХУКАТЬ";
+    position:absolute;left:14px;bottom:12px;
+    font-family:var(--accent);font-size:10px;letter-spacing:.28em;color:rgba(162,148,127,.55);
+  }
+  .target{
+    position:absolute;width:56px;height:56px;border-radius:50%;
+    border:1px solid rgba(255,138,92,.55);
+    background:radial-gradient(circle at 35% 30%, rgba(255,138,92,.35), rgba(138,59,30,.15));
+    box-shadow:0 0 30px rgba(255,90,50,.25);
+    display:grid;place-items:center;font-size:22px;user-select:none;pointer-events:none;
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-16px)}}
+  .chain{
+    position:absolute;height:7px;transform-origin:0 50%;pointer-events:none;z-index:5;
+    border-radius:4px;
+    background:repeating-linear-gradient(90deg,#8f7757 0 9px,#2a2118 9px 18px);
+    box-shadow:0 0 14px rgba(240,194,123,.25);
+    transition:width .28s cubic-bezier(.2,.9,.3,1), opacity .35s;
+  }
+  .hook-tip{
+    position:absolute;width:16px;height:16px;border-radius:50%;z-index:6;pointer-events:none;
+    background:radial-gradient(circle,#fff4dd,var(--copper));box-shadow:0 0 18px var(--copper);
+  }
+  #hitFreeze{
+    position:absolute;inset:0;z-index:7;display:grid;place-items:center;pointer-events:none;
+    font-family:var(--display);font-size:clamp(20px,3vw,32px);letter-spacing:.06em;
+    text-align:center;padding:20px;opacity:0;transition:opacity .2s;
+    background:rgba(10,9,8,.35);
+  }
+  #hitFreeze.show{opacity:1}
+  .game-side{padding:24px;display:flex;flex-direction:column;gap:16px}
+  .game-side h4{font-family:var(--display);font-size:26px;margin:0;font-weight:400;letter-spacing:.03em;color:var(--brass)}
+  .score{display:flex;gap:12px}
+  .score div{flex:1;border:1px solid rgba(240,194,123,.14);border-radius:12px;padding:12px;background:rgba(10,9,8,.35);text-align:center}
+  .score small{display:block;font-family:var(--accent);font-size:9px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+  .score b{font-family:var(--display);font-size:28px;color:var(--brass)}
+  .game-side .hint{color:var(--muted);font-size:12.5px;line-height:1.65;margin:0}
+  .log{
+    flex:1;min-height:90px;border:1px dashed rgba(240,194,123,.16);border-radius:12px;
+    padding:12px;font-size:12.5px;color:rgba(238,230,214,.75);line-height:1.6;overflow:auto;
+    background:rgba(0,0,0,.25);
+  }
+  .log div{padding:4px 0;border-bottom:1px solid rgba(240,194,123,.06)}
+  .log div:last-child{border:0}
+
+  /* ---------------- RANK ---------------- */
+  .rank{padding:clamp(28px,4vw,48px)}
+  .rank-top{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+  .rank-top h4{font-family:var(--display);font-size:30px;margin:0;font-weight:400;letter-spacing:.04em}
+  .rank-top .pct{font-family:var(--display);font-size:42px;color:var(--brass);line-height:1}
+  .bar{
+    height:22px;border-radius:999px;background:rgba(0,0,0,.5);
+    border:1px solid rgba(240,194,123,.18);overflow:hidden;position:relative;
+  }
+  .bar i{
+    display:block;height:100%;width:1%;
+    background:linear-gradient(90deg,#6e3a14,var(--copper),var(--brass));
+    box-shadow:0 0 24px rgba(240,194,123,.5);
+    transition:width .8s cubic-bezier(.2,.9,.3,1);
+    position:relative;
+  }
+  .bar i::after{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(115deg,rgba(255,255,255,.25) 0 8px,transparent 8px 18px);
+    animation:stripes 1.2s linear infinite;
+  }
+  @keyframes stripes{to{background-position:36px 0}}
+  .rank .under{display:flex;justify-content:space-between;margin-top:12px;color:var(--muted);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-family:var(--accent)}
+  .rank-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;align-items:center}
+  #rankMsg{color:var(--muted);font-size:13.5px;min-height:22px}
+
+  /* ---------------- PRANK ---------------- */
+  .prank{text-align:center;padding:clamp(30px,5vw,56px);position:relative;overflow:hidden}
+  .prank h4{font-family:var(--display);font-size:clamp(28px,4vw,42px);margin:0 0 8px;font-weight:400;letter-spacing:.02em}
+  .prank p{color:var(--muted);margin:0 0 30px;font-size:14.5px}
+  .prank-btns{display:flex;gap:16px;justify-content:center;position:relative;min-height:64px;flex-wrap:wrap}
+  #noBtn{transition:left .18s ease, top .18s ease, transform .18s;position:relative;z-index:2}
+  #prankMsg{margin-top:24px;font-family:var(--accent);color:var(--brass);letter-spacing:.04em;min-height:26px;font-size:16px}
+
+  /* ---------------- LETTER ---------------- */
+  .letter{padding:clamp(30px,5vw,60px);position:relative}
+  .letter::after{
+    content:"⚙";position:absolute;right:-20px;bottom:-40px;font-size:220px;
+    color:rgba(240,194,123,.05);line-height:1;pointer-events:none;
+  }
+  .letter .from{font-family:var(--accent);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--copper);margin-bottom:18px}
+  .letter h3{font-family:var(--display);font-size:clamp(30px,4.2vw,50px);line-height:1.02;margin:0 0 24px;font-weight:400;letter-spacing:.02em;text-transform:uppercase}
+  .letter h3 em{font-style:normal;color:var(--copper)}
+  .letter p{color:rgba(238,230,214,.82);line-height:1.9;font-size:16px;margin:0 0 16px;max-width:70ch}
+  .letter p b{color:#fff}
+  .letter .sig{margin-top:28px;font-family:var(--accent);letter-spacing:.08em;color:var(--brass);font-size:15px}
+  .letter .ps{margin-top:10px;color:var(--muted);font-size:13px;font-style:italic}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{padding:56px 0 44px;border-top:1px solid var(--line);margin-top:40px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot-in .vb{font-family:var(--display);font-size:clamp(24px,3.4vw,38px);letter-spacing:.06em;color:rgba(240,194,123,.85);line-height:1}
+  .foot-in .note{color:var(--muted);font-size:12px;line-height:1.7;max-width:420px}
+  .ghost-btn{
+    margin-top:14px;background:none;border:0;color:rgba(162,148,127,.4);
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;
+    font-family:var(--accent);padding:6px 0;transition:color .2s;
+  }
+  .ghost-btn:hover{color:var(--rust)}
+
+  /* ---------------- MODAL ---------------- */
+  .modal{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
+    background:rgba(5,4,3,.78);backdrop-filter:blur(6px);
+    opacity:0;visibility:hidden;transition:opacity .25s, visibility .25s;
+  }
+  .modal.open{opacity:1;visibility:visible}
+  .modal-card{
+    width:min(520px,100%);border:1px solid rgba(240,194,123,.3);border-radius:20px;
+    background:linear-gradient(180deg,#1b160e,#0d0a07);
+    padding:34px;text-align:center;position:relative;
+    box-shadow:0 40px 80px -30px #000, 0 0 60px -20px rgba(200,134,60,.4);
+    transform:translateY(14px) scale(.97);transition:transform .3s cubic-bezier(.2,.9,.3,1);
+  }
+  .modal.open .modal-card{transform:none}
+  .modal-card .mgear{width:64px;height:64px;margin:0 auto 18px;animation-duration:8s}
+  .modal-card h3{font-family:var(--display);font-size:32px;margin:0 0 10px;font-weight:400;letter-spacing:.03em;text-transform:uppercase;color:var(--brass)}
+  .modal-card p{color:var(--muted);line-height:1.7;font-size:14.5px;margin:0 0 24px}
+  .modal-card p b{color:var(--ink)}
+  .modal-close{position:absolute;top:12px;right:14px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+
+  /* ---------------- TOASTS / CONFETTI ---------------- */
+  #toasts{position:fixed;left:18px;bottom:18px;z-index:110;display:flex;flex-direction:column;gap:10px;max-width:340px}
+  .toast{
+    border:1px solid rgba(240,194,123,.35);border-radius:14px;padding:14px 16px;
+    background:linear-gradient(180deg,rgba(27,22,14,.98),rgba(13,10,7,.98));
+    box-shadow:0 20px 40px -20px #000, 0 0 30px -14px rgba(200,134,60,.8);
+    animation:toastIn .35s cubic-bezier(.2,.9,.3,1) both;
+  }
+  .toast.out{animation:toastOut .3s ease forwards}
+  .toast b{display:block;font-family:var(--accent);font-size:13px;letter-spacing:.06em;color:var(--brass);margin-bottom:4px}
+  .toast span{font-size:12.5px;color:var(--muted);line-height:1.55}
+  @keyframes toastIn{from{opacity:0;transform:translateX(-24px) scale(.96)}to{opacity:1;transform:none}}
+  @keyframes toastOut{to{opacity:0;transform:translateX(-24px)}}
+
+  .confetti{
+    position:fixed;top:-20px;z-index:105;width:9px;height:14px;border-radius:2px;
+    pointer-events:none;animation:confFall linear forwards;
+  }
+  @keyframes confFall{to{transform:translate3d(var(--dx),105vh,0) rotate(var(--rot));opacity:.9}}
+
+  .shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97) both}
+  @keyframes shake{10%,90%{transform:translate3d(-2px,0,0)}20%,80%{transform:translate3d(4px,0,0)}30%,50%,70%{transform:translate3d(-7px,0,0)}40%,60%{transform:translate3d(7px,0,0)}}
+
+  /* ---------------- BRUMASTER ---------------- */
+  #brumaster{
+    position:fixed;inset:0;z-index:120;background:#000;cursor:zoom-out;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;transition:opacity .3s, visibility .3s;
+  }
+  #brumaster.open{opacity:1;visibility:visible}
+  #brumaster img{
+    width:100%;height:100%;object-fit:cover;object-position:50% 30%;
+    transform:scale(1.02);
+    filter:contrast(1.03) saturate(1.05);
+  }
+  #brumaster.open img{animation:bmZoom 12s ease-out forwards}
+  @keyframes bmZoom{from{transform:scale(1.14)}to{transform:scale(1.02)}}
+  #brumaster::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(120% 90% at 50% 40%, transparent 35%, rgba(0,0,0,.55) 100%),
+      linear-gradient(0deg, rgba(0,0,0,.75), transparent 35%);
+  }
+  @media (max-aspect-ratio:1/1){
+    #brumaster img{object-position:74% 28%}
+  }
+  #brumaster .bm-top{
+    position:absolute;top:0;left:0;right:0;padding:24px 28px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-family:var(--accent);font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(240,194,123,.85);
+    background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);
+    pointer-events:none;z-index:2;
+  }
+  #brumaster .bm-cap{
+    position:absolute;left:0;right:0;bottom:0;padding:60px 24px 28px;text-align:center;
+    font-family:var(--display);font-size:clamp(22px,4vw,40px);letter-spacing:.06em;
+    color:#f6ecda;text-shadow:0 2px 20px #000;
+    background:linear-gradient(0deg,rgba(0,0,0,.9),transparent);
+    pointer-events:none;z-index:2;
+  }
+  #brumaster .bm-cap small{display:block;font-family:var(--accent);font-size:11px;letter-spacing:.3em;color:var(--copper);margin-top:10px}
+  #brumaster .bm-fallback{
+    display:none;flex-direction:column;align-items:center;gap:22px;text-align:center;padding:30px;
+  }
+  #brumaster .bm-fallback .gear{width:180px;height:180px}
+  #brumaster .bm-fallback b{
+    font-family:var(--display);font-size:clamp(40px,9vw,110px);line-height:.95;
+    letter-spacing:.04em;color:var(--brass);
+  }
+  .flash{position:fixed;inset:0;background:#fff;z-index:121;pointer-events:none;animation:flash .5s ease-out forwards}
+  @keyframes flash{from{opacity:1}to{opacity:0}}
+
+  /* golden mode */
+  body.golden{
+    --copper:#ffcf5c;--brass:#fff0b8;--line:rgba(255,215,120,.32);
+    filter:saturate(1.15);
+  }
+  body.golden h1 .name{filter:drop-shadow(0 0 60px rgba(255,215,120,.55))}
+  body.golden .gear{animation-duration:5s}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width:900px){
+    .dossier,.game-grid{grid-template-columns:1fr}
+    .hero-gear-a{width:200px;height:200px;left:-70px}
+    .hero-gear-b{width:240px;height:240px;right:-80px}
+    .hero-gear-c{display:none}
+    .nav-in{padding:10px 0}
+    .brand small{display:none}
+    .secrets{padding:6px 10px;font-size:10px}
+    #arena{height:300px}
+  }
+  @media (max-width:560px){
+    .stat-grid{grid-template-columns:1fr}
+    .char-gear{width:78px;height:78px}
+    .cta-row{flex-direction:column;align-items:stretch}
+    .btn{width:100%}
+    .letter::after{display:none}
+    .foot-in{flex-direction:column;align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" id="brand">
+      <div class="gear" id="brandGear"></div>
+      <div>
+        <b>PL.MONSTER</b><br>
+        <small>рекрут · фидер · клокверк</small>
+      </div>
+    </a>
+    <div class="secrets" title="Секретки">
+      <span>секретки</span> <b><span id="secretCount">0</span>/6</b>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="sparks"></canvas>
+    <div class="spot" id="spot"></div>
+    <div class="gear hero-gear-a slow"></div>
+    <div class="gear hero-gear-b rev"></div>
+    <div class="gear hero-gear-c"></div>
+
+    <div class="wrap">
+      <div class="kicker"><i></i> 18+ по мату · 0+ по скиллу</div>
+      <h1>
+        С днём рождения
+        <span class="name">ПЛ монстр</span>
+      </h1>
+      <p class="lead">
+        Тебе сегодня стало ещё на один год больше, а ранг всё тот же.
+        <b>Рекрут.</b> Пожизненно. Ты играешь только в фиде, твой единственный герой — <b>Clockwerk</b>,
+        и даже он иногда смотрит на тебя с осуждением.
+        <span class="bad">Но мы тебя всё равно любим, гнида.</span>
+      </p>
+      <div class="cta-row">
+        <button class="btn primary" id="heroBtn">Поздравить нормально</button>
+        <button class="btn ghost" id="wrongBtn">Не нажимать</button>
+      </div>
+    </div>
+
+    <div class="scroll-hint"><span></span>листай вниз, дотер</div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack">
+      <span>рекрут навсегда</span><span>клокверк в сердечке</span><span>0 mmr</span><span>фид — это стиль жизни</span><span>хук мимо</span><span>на рекрутах с 2019</span>
+      <span>рекрут навсегда</span><span>клокверк в сердечке</span><span>0 mmr</span><span>фид — это стиль жизни</span><span>хук мимо</span><span>на рекрутах с 2019</span>
+    </div>
+  </div>
+
+  <!-- DOSSIER -->
+  <section class="sec" id="dossier">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">досье</div>
+        <h2>Кто такой <em>ПЛ монстр</em></h2>
+        <p>Собрали всё, что нужно знать об имениннике. Спойлер: ничего хорошего.</p>
+      </div>
+
+      <div class="dossier">
+        <div class="panel char reveal">
+          <div class="char-top">
+            <div class="char-id">
+              <small>класс / герой</small>
+              <h3>CLOCKWERK</h3>
+              <p>Единственный герой, которого он «освоил»</p>
+            </div>
+            <div class="gear char-gear"></div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat"><small>ранг</small><b class="bad">Рекрут</b></div>
+            <div class="stat"><small>роль</small><b class="bad">Фид</b></div>
+            <div class="stat"><small>средний kda</small><b>1 / 17 / 2</b></div>
+            <div class="stat"><small>хукшоты</small><b>1 из 100</b></div>
+            <div class="stat"><small>любимая кнопка</small><b>«Назад»</b></div>
+            <div class="stat"><small>шанс выйти с рекрута</small><b class="bad">0,4%</b></div>
+          </div>
+        </div>
+
+        <div class="panel lore reveal">
+          <h4>Краткая биография</h4>
+          <p>
+            Родился. Вырос. Установил Доту. <b>И с тех пор всё пошло по пизде.</b>
+            ПЛ монстр — человек-легенда: он умудряется сидеть на рекрутах дольше, чем некоторые
+            живут. Каждый его матч начинается с фразы «сейчас разнесу» и заканчивается
+            фразой «ну у него герой имба».
+          </p>
+          <p>
+            Единственный пик — <b>Clockwerk</b>. Не потому что мета, а потому что
+            громко, ржаво и можно влететь в пятерых. Влетает он, правда, один. Против пятерых.
+            На второй минуте.
+          </p>
+          <p>
+            Он всегда на рекрутах. Всегда. Это уже не ранг, это <b>прописка</b>.
+            И он играет только в фиде — не потому что не умеет иначе, а потому что
+            «так веселее».
+          </p>
+          <div class="quote">«Я не фидер, я создаю пространство. Просто в нём нет меня.»</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERATOR -->
+  <section class="sec" id="generator">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">генератор</div>
+        <h2>Поздравление <em>по-человечески</em></h2>
+        <p>Жми кнопку — получишь искреннее поздравление. Искренне от всей нашей чёрной души.</p>
+      </div>
+      <div class="panel gen reveal">
+        <div class="screen"><div id="genText">Нажми кнопку, хуесос, я не умею угадывать.</div></div>
+        <button class="btn primary" id="genBtn">Поздравить</button>
+        <div class="gen-meta">
+          <span>выдано поздравлений: <b id="genCount" style="color:var(--brass)">0</b></span>
+          <span>уровень искренности: 3%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOOK GAME -->
+  <section class="sec" id="game">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">тренажёр</div>
+        <h2>Хукшот-<em>симулятор</em></h2>
+        <p>Кликни в арену, куда хочешь захукать. Тренируйся. Тебе надо. Очень.</p>
+      </div>
+      <div class="game-grid">
+        <div class="panel arena-wrap reveal">
+          <div id="arena">
+            <div class="target" style="left:14%;top:18%">🎯</div>
+            <div class="target" style="left:72%;top:26%;animation-delay:-2s">🎯</div>
+            <div class="target" style="left:44%;top:64%;animation-delay:-4s">🎯</div>
+            <div id="hitFreeze"></div>
+          </div>
+        </div>
+        <div class="panel game-side reveal">
+          <h4>Статистика</h4>
+          <div class="score">
+            <div><small>попал</small><b id="hits">0</b></div>
+            <div><small>промах</small><b id="misses">0</b></div>
+          </div>
+          <div class="log" id="gameLog">
+            <div>Система: хук заряжен. Наверное.</div>
+          </div>
+          <p class="hint">Совет от 0 MMR: если промахнулся — виноват пинг. Если попал — это случайность.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANK -->
+  <section class="sec" id="rank">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">прогресс</div>
+        <h2>Путь до <em>Легенды</em></h2>
+        <p>Мы честно замерили, насколько ПЛ монстр близок к высокому рангу. Вот результат.</p>
+      </div>
+      <div class="panel rank reveal">
+        <div class="rank-top">
+          <h4>Рекрут → Легенда</h4>
+          <div class="pct" id="rankPct">1%</div>
+        </div>
+        <div class="bar"><i id="rankBar"></i></div>
+        <div class="under"><span>Рекрут</span><span>Хранитель</span><span>Легенда</span></div>
+        <div class="rank-actions">
+          <button class="btn primary" id="trainBtn">Тренироваться</button>
+          <span id="rankMsg">Каждое нажатие приближает тебя к цели. Наверное.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRANK -->
+  <section class="sec" id="prank">
+    <div class="wrap">
+      <div class="panel prank reveal">
+        <h4>Ты вообще нормальный дотер?</h4>
+        <p>Отвечай честно. Второй кнопке это не понравится.</p>
+        <div class="prank-btns" id="prankBtns">
+          <button class="btn primary" id="yesBtn">Да</button>
+          <button class="btn ghost" id="noBtn">Нет</button>
+        </div>
+        <div id="prankMsg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="sec" id="letter">
+    <div class="wrap">
+      <div class="panel letter reveal">
+        <div class="from">письмо от друзей · доставлено</div>
+        <h3>ПЛ монстр, с днём рождения, <em>хуесос гнилой</em></h3>
+        <p>
+          Ты играешь в Доту столько лет, что уже должен был стать легендой.
+          Но вместо этого ты сидишь на рекрутах, играешь только в фиде и пикаешь
+          <b>Clockwerk</b> так, будто это спасёт твою жизнь. Не спасёт.
+        </p>
+        <p>
+          Твои хуки летят в молоко, твой KDA похож на номер телефона,
+          а твоя «стратегия» — это влететь в пятерых и умереть с достоинством.
+          Достоинства, правда, тоже не завезли.
+        </p>
+        <p>
+          Но знаешь что? Мы всё равно тебя любим. Потому что рядом с тобой
+          даже проигранный матч — это повод поржать до слёз.
+          Ты — наш личный клокверк: громкий, ржавый и всегда лезешь не туда.
+        </p>
+        <p>
+          Желаем тебе выйти с рекрута, перестать фидить, попасть хуком хоть раз в жизни
+          и однажды услышать от тиммейтов «ничего себе» вместо «репорт».
+          А если нет — <b>оставайся собой</b>. Нам и так смешно.
+        </p>
+        <div class="sig">С днём рождения, идиот. Мы тебя любим. ⚙️</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="vb">навайбкодил за 1 лимит</div>
+      <div class="note">Сайт собран на чистом энтузиазме, кофе и уважении к рекрутам. Все совпадения с ПЛ монстром случайны. Ну почти.</div>
+    </div>
+    <div>
+      <div class="note" style="text-align:right">секреток найдено: <b style="color:var(--brass)"><span class="secretCount2">0</span>/6</b></div>
+      <button class="ghost-btn" id="dontPress">не нажимать</button>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
+    <div class="gear mgear"></div>
+    <h3 id="modalTitle">Ошибка</h3>
+    <p id="modalText">Что-то пошло не так.</p>
+    <button class="btn primary" id="modalOk">Ладно</button>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<div id="brumaster">
+  <img id="brumasterImg" src="brumaster.jpg" alt="Брюмастер">
+  <div class="bm-top"><span>секретка · брюмастер</span><span>клик / esc — закрыть</span></div>
+  <div class="bm-fallback" id="bmFallback">
+    <div class="gear"></div>
+    <b>БРЮМАСТЕР</b>
+  </div>
+  <div class="bm-cap">ЭТО БРЮМАСТЕР. НЕ ПУГАЙСЯ.<small>нажми, чтобы закрыть</small></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const $  = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const rand = (a) => a[Math.floor(Math.random() * a.length)];
+  const rnd = (min, max) => Math.random() * (max - min) + min;
+
+  /* ============ SECRETS / TOASTS ============ */
+  const SECRET_TOTAL = 6;
+  const secrets = new Set();
+
+  function toast(title, text){
+    const box = $("#toasts");
+    const el = document.createElement("div");
+    el.className = "toast";
+    el.innerHTML = "<b>" + title + "</b><span>" + text + "</span>";
+    box.appendChild(el);
+    setTimeout(() => {
+      el.classList.add("out");
+      setTimeout(() => el.remove(), 350);
+    }, 4200);
+  }
+
+  function updateSecretCount(){
+    const n = secrets.size;
+    $$(".secretCount2").forEach(e => e.textContent = n);
+    const sc = $("#secretCount");
+    if (sc) sc.textContent = n;
+  }
+
+  function unlock(key, title, text){
+    if (secrets.has(key)) return false;
+    secrets.add(key);
+    updateSecretCount();
+    toast("Секретка " + secrets.size + "/" + SECRET_TOTAL + " · " + title, text);
+    confetti(28);
+    return true;
+  }
+
+  /* ============ CONFETTI ============ */
+  function confetti(count){
+    const colors = ["#f0c27b", "#c8863c", "#c6ff4a", "#ff8a5c", "#fff4dd", "#8a3b1e"];
+    for (let i = 0; i < (count || 40); i++){
+      const c = document.createElement("i");
+      c.className = "confetti";
+      c.style.left = rnd(0, 100) + "vw";
+      c.style.background = rand(colors);
+      c.style.setProperty("--dx", rnd(-80, 80) + "px");
+      c.style.setProperty("--rot", rnd(-720, 720) + "deg");
+      c.style.animationDuration = rnd(2.2, 4.2) + "s";
+      c.style.animationDelay = rnd(0, .5) + "s";
+      c.style.opacity = rnd(.6, 1);
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 5200);
+    }
+  }
+
+  /* ============ MODAL ============ */
+  const modal = $("#modal");
+  function openModal(title, text, okLabel){
+    $("#modalTitle").textContent = title;
+    $("#modalText").innerHTML = text;
+    $("#modalOk").textContent = okLabel || "Ладно";
+    modal.classList.add("open");
+  }
+  function closeModal(){ modal.classList.remove("open"); }
+  $("#modalClose").addEventListener("click", closeModal);
+  $("#modalOk").addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+  /* ============ HERO SPARKS CANVAS ============ */
+  const canvas = $("#sparks");
+  const ctx = canvas.getContext("2d");
+  let W = 0, H = 0, sparks = [];
+  function resizeCanvas(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function makeSparks(){
+    const n = Math.min(90, Math.floor(W / 14));
+    sparks = [];
+    for (let i = 0; i < n; i++){
+      sparks.push({
+        x: rnd(0, W), y: rnd(0, H),
+        r: rnd(.6, 2.4),
+        vy: rnd(-.55, -.12),
+        vx: rnd(-.18, .18),
+        a: rnd(.12, .65),
+        hue: Math.random() < .25 ? "198,255,74" : "240,194,123"
+      });
+    }
+  }
+  let rafId = null;
+  function drawSparks(){
+    ctx.clearRect(0, 0, W, H);
+    for (const s of sparks){
+      s.x += s.vx; s.y += s.vy;
+      if (s.y < -10){ s.y = H + 10; s.x = rnd(0, W); }
+      if (s.x < -10) s.x = W + 10;
+      if (s.x > W + 10) s.x = -10;
+      const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 6);
+      g.addColorStop(0, "rgba(" + s.hue + "," + s.a + ")");
+      g.addColorStop(1, "rgba(" + s.hue + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * 6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    rafId = requestAnimationFrame(drawSparks);
+  }
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion){
+    resizeCanvas(); makeSparks(); drawSparks();
+    window.addEventListener("resize", () => { resizeCanvas(); makeSparks(); });
+  } else {
+    resizeCanvas();
+  }
+
+  /* hero spotlight */
+  const hero = $("#hero");
+  const spot = $("#spot");
+  hero.addEventListener("pointermove", (e) => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+    hero.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
+  });
+
+  /* ============ HERO BUTTONS ============ */
+  $("#heroBtn").addEventListener("click", () => {
+    confetti(70);
+    document.getElementById("letter").scrollIntoView({ behavior: "smooth" });
+  });
+
+  const wrongLines = [
+    "Ты серьёзно нажал «не нажимать», хуесос ебучий? Ну конечно. Классика рекрута.",
+    "Кнопка называется «не нажимать». Ты нажал. Всё с тобой ясно, гнида.",
+    "Поздравляю, ты не смог пройти даже элементарный тест. Неудивительно, что ты на рекрутах.",
+    "Хуесос ебучий, ты и в Доте так же — видишь запрет и лезешь на него.",
+    "Ну вот, нажал. Теперь сиди и думай о своём поведении. Как в лобби после репорта."
+  ];
+  $("#wrongBtn").addEventListener("click", () => {
+    document.body.classList.add("shake");
+    setTimeout(() => document.body.classList.remove("shake"), 520);
+    openModal("Ты нажал не ту кнопку", "<b>" + rand(wrongLines) + "</b><br><br>Но с днём рождения, конечно. Мы же не звери.", "Простите");
+  });
+
+  /* ============ GENERATOR ============ */
+  const greetings = [
+    "С днём рождения, хуесос! Желаю выйти с рекрута. Хотя бы во сне.",
+    "Поздравляю! Ты стал на год старше, а ранг всё тот же. Талант.",
+    "С днём рождения, гнида! Пусть твои хуки летят в цель, а не в молоко.",
+    "Желаю тебе в этом году захукать хоть кого-то, кроме себя. Хотя бы крипа.",
+    "С др, легенда! Шучу. Ты рекрут. Но с др искренне.",
+    "Поздравляю, идиот! Пусть в новом году твой KDA перестанет быть похож на номер телефона.",
+    "С днём рождения, хуесос! Ты играешь только в фиде, но зато с душой. С чёрной, но с душой.",
+    "Желаю тебе не пикать Clockwerk. Шучу. Пикай. Нам же надо над кем-то ржать.",
+    "С днём рождения! Ты — единственный человек, которого рекрут выбрал сам. Пожизненно.",
+    "Поздравляю! Пусть тиммейты в этом году говорят «ничего себе», а не «репорт». Хотя бы иногда.",
+    "С др, клокверк ржавый! Пусть шестерёнки в голове наконец зацепятся.",
+    "Поздравляю, хуесос! Ты не фидишь — ты даришь врагам золото. Щедрый ты человек.",
+    "С днём рождения! Желаю тебе MMR, который не стыдно показать маме.",
+    "Поздравляю! В этом году ты наконец поймёшь, что «влететь в пятерых» — это не тактика.",
+    "С др, гнида! Пусть твой рекрут станет мемом, а не диагнозом. Хотя поздно.",
+    "Желаю тебе однажды попасть хуком с первого раза. Мы все верим. Ну, почти все."
+  ];
+  let genCount = 0;
+  const genText = $("#genText");
+  const genBtn = $("#genBtn");
+  genBtn.addEventListener("click", () => {
+    genText.classList.add("fade");
+    setTimeout(() => {
+      genText.textContent = rand(greetings);
+      genText.classList.remove("fade");
+      genCount++;
+      $("#genCount").textContent = genCount;
+      if (genCount === 1) toast("Поздравление выдано", "Искренность: 3%. Остальное — правда.");
+      if (genCount === 15){
+        toast("Ты упорный", "15 поздравлений. Упорства больше, чем скилла. Это тоже талант.");
+      }
+    }, 220);
+    confetti(14);
+  });
+
+  /* ============ HOOK GAME ============ */
+  const arena = $("#arena");
+  const hitFreeze = $("#hitFreeze");
+  let hits = 0, misses = 0;
+
+  const missText = [
+    "Хук улетел в молоко. Классика.",
+    "Промах. Виноват пинг, конечно.",
+    "Ты захукал воздух. Воздух в восторге.",
+    "Мимо. Крипы смеются.",
+    "Хук ушёл на пенсию, не долетев.",
+    "Промах. Тиммейты уже тянутся к кнопке «репорт».",
+    "Ты целился в героя, попал в ноль. Стабильность.",
+    "Хук пролетел мимо и улетел в другой матч.",
+    "Промах. Даже дерево увернулось.",
+    "Не попал. Но зато красиво."
+  ];
+  const hitText = [
+    "ПОПАЛ! Неужели? Запишите этот день в историю.",
+    "Хук в цель! Кто это сделал и куда дел ПЛ монстра?",
+    "Попал! Случайность, но мы засчитаем.",
+    "В точку! Даже клокверк удивился.",
+    "Хук зашёл! Тиммейты в шоке, ты тоже."
+  ];
+
+  function logLine(text){
+    const log = $("#gameLog");
+    const d = document.createElement("div");
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    while (log.children.length > 40) log.removeChild(log.firstChild);
+  }
+
+  function fireHook(e){
+    const r = arena.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    const ox = 40, oy = r.height - 40;
+    const dx = x - ox, dy = y - oy;
+    const len = Math.hypot(dx, dy);
+    const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+
+    const chain = document.createElement("div");
+    chain.className = "chain";
+    chain.style.left = ox + "px";
+    chain.style.top = oy + "px";
+    chain.style.width = "0px";
+    chain.style.transform = "rotate(" + ang + "deg)";
+    arena.appendChild(chain);
+
+    const tip = document.createElement("div");
+    tip.className = "hook-tip";
+    tip.style.left = ox + "px";
+    tip.style.top = (oy - 8) + "px";
+    tip.style.opacity = "0";
+    arena.appendChild(tip);
+
+    requestAnimationFrame(() => { chain.style.width = len + "px"; });
+    setTimeout(() => {
+      tip.style.opacity = "1";
+      tip.style.transition = "left .28s cubic-bezier(.2,.9,.3,1), top .28s cubic-bezier(.2,.9,.3,1)";
+      tip.style.left = (ox + Math.cos(ang * Math.PI / 180) * len - 8) + "px";
+      tip.style.top = (oy + Math.sin(ang * Math.PI / 180) * len - 8) + "px";
+    }, 20);
+
+    setTimeout(() => {
+      chain.style.opacity = "0";
+      tip.style.opacity = "0";
+      setTimeout(() => { chain.remove(); tip.remove(); }, 400);
+    }, 520);
+
+    const isHit = Math.random() < 0.18;
+
+    hitFreeze.textContent = isHit ? rand(hitText) : rand(missText);
+    hitFreeze.style.color = isHit ? "var(--acid)" : "#ff9a6a";
+    hitFreeze.classList.add("show");
+    setTimeout(() => hitFreeze.classList.remove("show"), 1300);
+
+    if (isHit){ hits++; $("#hits").textContent = hits; logLine("✔ " + rand(hitText)); confetti(18); }
+    else { misses++; $("#misses").textContent = misses; logLine("✖ " + rand(missText)); }
+
+    if (misses === 10){
+      toast("10 промахов", "Это уже не невезение. Это стиль. Ты стабилен, и это главное.");
+    }
+    if (hits === 1){
+      toast("Первый хук", "Ты попал! Мы гордимся. Не поднимай планку слишком высоко.");
+    }
+  }
+  arena.addEventListener("click", fireHook);
+
+  /* ============ RANK ============ */
+  const rankBar = $("#rankBar");
+  const rankPct = $("#rankPct");
+  const rankMsg = $("#rankMsg");
+  let trainClicks = 0;
+  let rank = 1;
+
+  const trainLines = [
+    "Прогресс: +0,00%. Ты старался. Мы видели.",
+    "Ты нажал кнопку «Тренироваться». Дота не заметила.",
+    "Ранг не изменился. Зато ты стал чуть увереннее. Незаслуженно.",
+    "Ещё одно нажатие — и точно Легенда. Шучу. Не точно.",
+    "Тренировка завершена. Результат: ты всё ещё рекрут.",
+    "Мы посчитали: тебе осталось 900 000 таких нажатий.",
+    "Твой скилл вырос на 0,0001%. Округлили до 0.",
+    "Ты не тренируешься. Ты медитируешь на кнопку."
+  ];
+
+  $("#trainBtn").addEventListener("click", () => {
+    trainClicks++;
+    const fake = Math.min(rank + rnd(0.2, 1.2), 1.9);
+    rankBar.style.width = fake.toFixed(2) + "%";
+    rankPct.textContent = fake.toFixed(1).replace(".", ",") + "%";
+    rankMsg.style.color = "var(--muted)";
+    rankMsg.textContent = "Тренировка...";
+    setTimeout(() => {
+      rankBar.style.width = "1%";
+      rankPct.textContent = "1%";
+      rankMsg.textContent = rand(trainLines);
+      rankMsg.style.color = "var(--muted)";
+      if (trainClicks === 5){
+        toast("Упертый", "5 попыток. Ты не сдаёшься. Это, пожалуй, единственное, что у тебя хорошо получается.");
+      }
+    }, 900);
+  });
+
+  /* ============ PRANK ============ */
+  const noBtn = $("#noBtn");
+  const prankMsg = $("#prankMsg");
+  const prankBtns = $("#prankBtns");
+  const noLines = [
+    "Врёшь, хуесос. Ты нормальный дотер. Ну, почти.",
+    "Нет? Тогда почему ты на рекрутах, а не в топе? Вопрос риторический.",
+    "Правильный ответ — «нет». Ты его не выбрал, и мы тебя уважаем. Чуть-чуть.",
+    "Ты сказал «нет». Мы посмеялись. С днём рождения, гнида.",
+    "Кнопка «Нет» убежала. Как твой рейтинг."
+  ];
+  let moved = 0;
+  function moveNo(){
+    moved++;
+    const rect = prankBtns.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
+    const maxX = Math.max(0, rect.width - btnRect.width - 8);
+    const maxY = Math.max(0, 60);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = rnd(0, maxX) + "px";
+    noBtn.style.top = rnd(-20, maxY) + "px";
+  }
+  noBtn.addEventListener("pointerenter", moveNo);
+  noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    prankMsg.textContent = rand(noLines);
+    confetti(12);
+    unlock("no-btn", "Поймал «Нет»", "Ты умудрился нажать на убегающую кнопку. Настойчивость — твой единственный скилл.");
+    moveNo();
+  });
+  $("#yesBtn").addEventListener("click", () => {
+    prankMsg.textContent = "Врёшь, но ладно. С днём рождения, хуесос.";
+    confetti(20);
+  });
+
+  /* ============ SECRET: KONAMI ============ */
+  const konamiCode = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+  let konamiBuf = [];
+  document.addEventListener("keydown", (e) => {
+    konamiBuf.push(e.key.length === 1 ? e.key.toLowerCase() : e.key);
+    if (konamiBuf.length > konamiCode.length) konamiBuf.shift();
+    if (konamiBuf.join(",") === konamiCode.join(",")){
+      konamiBuf = [];
+      document.body.classList.add("golden");
+      if (unlock("konami", "Золотой клокверк", "Конами-код сработал. Весь сайт теперь золотой, как твои мечты о легенде.")){
+        confetti(90);
+      }
+    }
+  });
+
+  /* ============ SECRET: TYPE "фид" / "брюмастер" ============ */
+  const brumaster = $("#brumaster");
+  const brumasterImg = $("#brumasterImg");
+  const bmSources = ["brumaster.jpg", "brumaster.jpeg", "brumaster.png", "brumaster.webp"];
+  let bmIdx = 0;
+
+  function showBrumaster(){
+    if (brumaster.classList.contains("open")) return;
+    brumaster.classList.add("open");
+    document.body.style.overflow = "hidden";
+    const flash = document.createElement("div");
+    flash.className = "flash";
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 560);
+    confetti(30);
+    unlock("brumaster", "БРЮМАСТЕР", "Ты ввёл секретное слово. Теперь ты видел то, что нельзя развидеть.");
+  }
+  function hideBrumaster(){
+    brumaster.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  brumasterImg.addEventListener("error", () => {
+    bmIdx++;
+    if (bmIdx < bmSources.length){
+      brumasterImg.src = bmSources[bmIdx];
+    } else {
+      brumasterImg.style.display = "none";
+      $("#bmFallback").style.display = "flex";
+    }
+  });
+  brumaster.addEventListener("click", hideBrumaster);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") hideBrumaster();
+  });
+
+  let typed = "";
+  document.addEventListener("keydown", (e) => {
+    if (e.key.length !== 1) return;
+    typed = (typed + e.key.toLowerCase()).slice(-16);
+    if (typed.includes("брюмастер")){
+      typed = "";
+      showBrumaster();
+      return;
+    }
+    if (typed.includes("фид")){
+      typed = "";
+      if (unlock("feed", "Слово силы", "Ты написал «фид». Мы не удивлены. С неба падают твои смерти.")){
+        feedRain();
+      }
+    }
+  });
+  function feedRain(){
+    const words = ["ФИД", "СМЕРТЬ", "−25", "РЕКРУТ", "ХУК МИМО", "0 MMR", "CLOCKWERK"];
+    for (let i = 0; i < 34; i++){
+      const el = document.createElement("div");
+      el.textContent = words[i % words.length];
+      el.style.position = "fixed";
+      el.style.left = rnd(0, 100) + "vw";
+      el.style.top = "-40px";
+      el.style.zIndex = "104";
+      el.style.pointerEvents = "none";
+      el.style.fontFamily = "var(--display)";
+      el.style.fontSize = rnd(16, 40) + "px";
+      el.style.color = i % 3 === 0 ? "var(--acid)" : "var(--copper)";
+      el.style.opacity = "0";
+      el.style.transform = "rotate(" + rnd(-20, 20) + "deg)";
+      el.style.transition = "transform 3s linear, top 3s linear, opacity .4s";
+      document.body.appendChild(el);
+      const delay = rnd(0, 700);
+      setTimeout(() => {
+        el.style.opacity = "1";
+        el.style.top = "105vh";
+        el.style.transform = "rotate(" + rnd(-40, 40) + "deg) translateX(" + rnd(-60, 60) + "px)";
+      }, delay);
+      setTimeout(() => el.remove(), delay + 3600);
+    }
+  }
+
+  /* ============ SECRET: CLICK BRAND GEAR 7x ============ */
+  let gearClicks = 0;
+  $("#brandGear").addEventListener("click", () => {
+    gearClicks++;
+    const g = $("#brandGear");
+    g.style.transition = "transform .15s";
+    g.style.transform = "scale(1.25) rotate(" + (gearClicks * 40) + "deg)";
+    setTimeout(() => { g.style.transform = ""; }, 160);
+    if (gearClicks === 7){
+      unlock("gear7", "Семь оборотов", "Ты прокрутил шестерёнку 7 раз. В голове провернулось примерно столько же.");
+      document.body.classList.add("golden");
+      setTimeout(() => document.body.classList.remove("golden"), 6000);
+    }
+  });
+
+  /* ============ SECRET: "не нажимать" in footer ============ */
+  $("#dontPress").addEventListener("click", () => {
+    const lines = [
+      "Ты нажал кнопку, которую просили не нажимать. Хуесос ебучий, это диагноз.",
+      "Опять? Серьёзно? Тебе даже кнопки нельзя доверить.",
+      "Ну вот. Теперь ты знаешь о себе всё. И мы тоже."
+    ];
+    document.body.classList.add("shake");
+    setTimeout(() => document.body.classList.remove("shake"), 520);
+    openModal("Зачем?", "<b>" + rand(lines) + "</b><br><br>Но мы всё равно тебя любим. С днём рождения.", "Больше не буду");
+    unlock("dont-press", "Кнопка-ловушка", "Ты нажал «не нажимать» во второй раз. Упорство или диагноз — решай сам.");
+  });
+
+  /* ============ REVEAL ON SCROLL ============ */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  $$(".reveal").forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 70) + "ms";
+    io.observe(el);
+  });
+
+  /* ============ CONSOLE HINT ============ */
+  try{
+    console.log("%c⚙️ PL.MONSTER", "color:#f0c27b;font-size:22px;font-weight:bold");
+    console.log("%cТут спрятано 6 секреток. Начни с конца страницы. И следи за клавиатурой.", "color:#a2947f");
+  }catch(e){}
+
+  updateSecretCount();
+})();
+</script>
+</body>
+</html>
